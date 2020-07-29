@@ -1,27 +1,27 @@
-const express = require("express");
-const path = require("path");
-const mongoose = require("mongoose");
+const express = require("express")
+const path = require("path")
+const mongoose = require("mongoose")
 
-const PORT = process.env.PORT || 8080;
-const app = express();
-// const routers = require("./routes/apiRoutes");
+const PORT = process.env.PORT || 8080
+const app = express()
+const routers = require("./routes/router")
 
 // Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("client/build"))
 }
 
 // Connect to the Mongo DB
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/googlebooks",
   { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
-);
+)
 
 // Use apiRoutes
-// app.use("/api", apiRoutes);
+routers(app)
 
 // Send every request to the React app
 // Define any API routes before this runs
@@ -30,5 +30,5 @@ mongoose.connect(
 // });
 
 app.listen(PORT, function() {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
+  console.log(`🌎 ==> backend server now on port ${PORT}!`)
+})

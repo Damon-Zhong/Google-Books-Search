@@ -1,0 +1,8 @@
+.header{
+    min-height: 50vh;
+    text-align: center;
+    padding-top: 8%;
+    color: white;
+    background-color: blueviolet;   
+    background: url('https://www.lovevalencia.com/wp-content/uploads/2017/10/Library.jpeg') no-repeat center center; 
+}
